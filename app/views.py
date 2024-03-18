@@ -7,7 +7,8 @@ This file contains the routes for your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
-
+from app.models import UserProfile
+from app.models import Property
 
 ###
 # Routing for your application.
@@ -28,6 +29,20 @@ def about():
 ###
 # The functions below should be applicable to all Flask apps.
 ###
+@app.route('/properties/create')
+def create_property():
+    """Render the website's create property page."""
+    return render_template('create_property.html')
+
+@app.route('/properties')
+def properties():
+    """Render the website's properties page."""
+    return render_template('properties.html')
+
+@app.route('/property/<propertyid>')
+def property(propertyid):
+    """Render the website's property page."""
+    return render_template('property.html')
 
 # Display Flask WTF errors as Flash messages
 def flash_errors(form):
