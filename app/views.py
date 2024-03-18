@@ -41,7 +41,7 @@ def create_property():
     if form.validate_on_submit():
         f = form.photo.data
         filename = secure_filename(f.filename)
-        f.save(os.path.join('UPLOAD_FOLDER', filename))
+        f.save(os.path.join(os.environ['UPLOAD_FOLDER'], filename))
 
         property = Property(title=form.title.data, bedrooms=form.bedrooms.data, 
                             bathrooms=form.bathrooms.data, location=form.location.data, 
