@@ -5,9 +5,16 @@ Werkzeug Documentation:  https://werkzeug.palletsprojects.com/
 This file contains the routes for your application.
 """
 
+import os
+
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
 from app import app
-from flask import render_template, request, redirect, url_for
+from flask import flash, render_template, request, redirect, url_for
+from app.forms import PropertyForm
 from app.models import Property
+from werkzeug.utils import secure_filename
+from . import db
 
 ###
 # Routing for your application.
@@ -28,10 +35,24 @@ def about():
 ###
 # The functions below should be applicable to all Flask apps.
 ###
-@app.route('/properties/create')
+@app.route('/properties/create', methods=['GET', 'POST'])
 def create_property():
-    """Render the website's create property page."""
-    return render_template('create_property.html')
+    form = PropertyForm()
+    if form.validate_on_submit():
+        f = form.photo.data
+        filename = secure_filename(f.filename)
+        f.save(os.path.join('UPLOAD_FOLDER', filename))
+
+        property = Property(title=form.title.data, bedrooms=form.bedrooms.data, 
+                            bathrooms=form.bathrooms.data, location=form.location.data, 
+                            price=form.price.data, type=form.type.data, 
+                            description=form.description.data, photo=filename)
+        db.session.add(property)
+        db.session.commit()
+        
+        flash('Property successfully added', 'success')
+        return redirect(url_for('properties'))
+    return render_template('create_property.html', form=form)
 
 @app.route('/properties')
 def properties():
