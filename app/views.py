@@ -7,7 +7,6 @@ This file contains the routes for your application.
 
 from app import app
 from flask import render_template, request, redirect, url_for
-from app.models import UserProfile
 from app.models import Property
 
 ###
