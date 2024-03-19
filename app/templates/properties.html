@@ -7,10 +7,10 @@
     {% for property in properties %}
         <div class="property-list-item">
             <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
-            <p>{{ property.title }}</p>
+            <p class='title'>{{ property.title }}, {{property.type}}</p>
             <p>{{ property.location }}</p>
             <p>${{ property.price }}</p>
-         
+         <a href="{{ url_for('property', id=property.id) }}">View</a>
         </div>
     {% endfor %}
 </div>

@@ -1,43 +1,47 @@
 {% extends "base.html" %}
 
 {% block main %}
-<form method="POST" enctype="multipart/form-data">
+<form method="POST" enctype="multipart/form-data" id="create-property">
     {{ form.csrf_token }}
-    
+    <h1>Add New Property</h1>
     <div class="form-group">
-        <label for="title">Title</label>
+        <label for="title">Property Title</label>
         {{ form.title(class="form-control") }}
     </div>
-    
     <div class="form-group">
-        <label for="bedrooms">Number of Bedrooms</label>
+        <label for="description">Description</label>
+        {{ form.description(class="form-control") }}
+    </div>
+
+    <div class="room-ctn">
+    <div class="form-group">
+        <label for="bedrooms">No. of Rooms</label>
         {{ form.bedrooms(class="form-control") }}
     </div>
     
     <div class="form-group">
-        <label for="bathrooms">Number of Bathrooms</label>
+        <label for="bathrooms">No. of Bathrooms</label>
         {{ form.bathrooms(class="form-control") }}
+    </div>
+    </div>
+
+    <div class="price_type-ctn">
+    <div class="form-group">
+        <label for="price">Price</label>
+        {{ form.price(class="form-control") }}
+    </div>
+     
+    <div class="form-group">
+        <label for="type">Type</label>
+        {{ form.type(class="form-control") }}
+    </div>
     </div>
     
     <div class="form-group">
         <label for="location">Location</label>
         {{ form.location(class="form-control") }}
     </div>
-    
-    <div class="form-group">
-        <label for="price">Price</label>
-        {{ form.price(class="form-control") }}
-    </div>
-    
-    <div class="form-group">
-        <label for="type">Type</label>
-        {{ form.type(class="form-control") }}
-    </div>
-    
-    <div class="form-group">
-        <label for="description">Description</label>
-        {{ form.description(class="form-control") }}
-    </div>
+
     
     <div class="form-group">
         <label for="photo">Photo</label>
