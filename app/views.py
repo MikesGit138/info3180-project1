@@ -10,7 +10,7 @@ import os
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from app import app
-from flask import flash, render_template, request, redirect, url_for
+from flask import flash, render_template, request, redirect, send_from_directory, url_for
 from app.forms import PropertyForm
 from app.models import Property
 from werkzeug.utils import secure_filename
@@ -41,7 +41,7 @@ def create_property():
     if form.validate_on_submit():
         f = form.photo.data
         filename = secure_filename(f.filename)
-        f.save(os.path.join(os.environ['UPLOAD_FOLDER'], filename))
+        f.save(os.path.join('.//uploads', filename))
 
         property = Property(title=form.title.data, bedrooms=form.bedrooms.data, 
                             bathrooms=form.bathrooms.data, location=form.location.data, 
@@ -57,12 +57,18 @@ def create_property():
 @app.route('/properties')
 def properties():
     """Render the website's properties page."""
-    return render_template('properties.html')
+    properties = Property.query.all()
+    return render_template('properties.html', properties=properties)
 
 @app.route('/property/<propertyid>')
 def property(propertyid):
     """Render the website's property page."""
     return render_template('property.html')
+
+@app.route('/uploads/<filename>', methods=['GET'])
+def get_image(filename):
+    return send_from_directory(os.path.join(os.getcwd(), 
+    app.config['UPLOAD_FOLDER']), filename)
 
 # Display Flask WTF errors as Flash messages
 def flash_errors(form):
