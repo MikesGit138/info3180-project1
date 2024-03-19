@@ -63,7 +63,8 @@ def properties():
 @app.route('/property/<propertyid>')
 def property(propertyid):
     """Render the website's property page."""
-    property = Property.query.filter_by(id=id).first()
+    property_id = int(propertyid)
+    property = Property.query.filter_by(id=property_id).first()     
     return render_template('property.html', property=property)
 
 @app.route('/uploads/<filename>', methods=['GET'])

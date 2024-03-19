@@ -35,3 +35,15 @@ img.property-picture{
     font-size: 1.5rem;
     font-weight: bold;
 }
+
+#property-info-ctn{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+.property-picture{
+    /* width: 100%; */
+    height: 100%;
+    object-fit: cover;
+}
+```

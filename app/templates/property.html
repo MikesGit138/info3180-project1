@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <div id="property-info-ctn">
+        <div>
+        <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
+        </div>
+        <div class="property-details">
+            <p class="property-title">{{ property.title }}</p>
+            <p class="property-location">{{ property.location }}</p>
+            <p class="property-price">${{ property.price }}</p>
+            <p class="property-description">{{ property.description }}</p>
+            <p class="property-bedrooms"># of bedrooms: {{ property.bedrooms }}</p>
+            <p class="property-bathrooms"># of bathrooms: {{ property.bathrooms }}</p>
+            <p class="property-type">Property Type: {{ property.type }}</p>
+            <button class="email-button">Email Realtor</button>
+        </div>
+    </div>
+{% endblock %}
