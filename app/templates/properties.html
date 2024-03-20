@@ -2,15 +2,15 @@
 
 {% block main %}
 <h1 id="properties-header">Properties</h1>
-
+{%include "flash.html"%}
 <div id="property-container">
     {% for property in properties %}
-        <div class="property-list-item">
+        <div class="card">
             <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
-            <p class='title'>{{ property.title }}, {{property.type}}</p>
+            <p class='card-header'>{{ property.title }}, {{property.type}}</p>
             <p>{{ property.location }}</p>
             <p>${{ property.price }}</p>
-         <a href="{{ url_for('property', propertyid=property.id) }}">View</a>
+         <a href="{{ url_for('property', propertyid=property.id) }}" class='btn btn-primary'>View</a>
         </div>
     {% endfor %}
 </div>

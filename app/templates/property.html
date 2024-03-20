@@ -6,14 +6,13 @@
         <img class='property-picture' src={{ url_for('get_image',filename=property.photo) }} />
         </div>
         <div class="property-details">
-            <p class="property-title">{{ property.title }}</p>
-            <p class="property-location">{{ property.location }}</p>
-            <p class="property-price">${{ property.price }}</p>
+            <p class="property-title">{{ property.title }} - {{property.type}}</p>
+            <p class="">${{ property.price }}</p>
             <p class="property-description">{{ property.description }}</p>
-            <p class="property-bedrooms"># of bedrooms: {{ property.bedrooms }}</p>
-            <p class="property-bathrooms"># of bathrooms: {{ property.bathrooms }}</p>
-            <p class="property-type">Property Type: {{ property.type }}</p>
-            <button class="email-button">Email Realtor</button>
+            <p class="property-bedrooms">{{ property.bedrooms }} Bedrooms</p>
+            <p class="property-bathrooms">{{ property.bathrooms }} Bathrooms</p>
+            <p class="property-location">{{ property.location }}</p>
+            <button class="btn btn-primary">Email Realtor</button>
         </div>
     </div>
 {% endblock %}

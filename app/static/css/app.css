@@ -22,7 +22,7 @@ form#create-property{
 #property-container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
+    gap: 1rem;
 }
 
 img.property-picture{
@@ -46,4 +46,3 @@ img.property-picture{
     height: 100%;
     object-fit: cover;
 }
-```
